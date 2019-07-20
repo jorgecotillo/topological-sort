@@ -1,0 +1,55 @@
+[
+    {
+        "Name": "DiagnosticStorageAccount",
+        "DependsOn": []
+    },
+    {
+        "Name": "LogAnalytics",
+        "DependsOn": [
+            "DiagnosticStorageAccount"
+        ]
+    },
+    {
+        "Name": "SharedServicesNetworkSecurityGroup",
+        "DependsOn": [
+            "DiagnosticStorageAccount",
+            "LogAnalytics"
+        ]
+    },
+    {
+        "Name": "SharedServicesRouteTable",
+        "DependsOn": []
+    },
+    {
+        "Name": "VirtualNetwork",
+        "DependsOn": [
+            "SharedServicesNetworkSecurityGroup",
+            "SharedServicesRouteTable"
+        ]
+    },
+    {
+        "Name": "AzureFirewall",
+        "DependsOn": [
+            "DiagnosticStorageAccount",
+            "LogAnalytics",
+            "VirtualNetwork"
+        ]
+    },
+    {
+        "Name": "Jumpbox",
+        "DependsOn": [
+            "DiagnosticStorageAccount",
+            "LogAnalytics",
+            "VirtualNetwork"
+        ]
+    },
+    {
+        "Name": "ActiveDirectoryDomainServices",
+        "DependsOn": [
+            "DiagnosticStorageAccount",
+            "LogAnalytics",
+            "VirtualNetwork",
+            "Jumpbox"
+        ]
+    }
+]
