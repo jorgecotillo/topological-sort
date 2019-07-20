@@ -11,7 +11,7 @@ namespace VDC.Core
     {
         public List<Vertex> Vertices { get; } = new List<Vertex>();
         public List<Vertex> TopologicalSort { get; private set; } = new List<Vertex>();
-        public LinkedList<Vertex> _TopologicalSort { get; } = new LinkedList<Vertex>();
+        private LinkedList<Vertex> _TopologicalSort { get; } = new LinkedList<Vertex>();
         int Time { get; set; }
         public int GraphSize 
         {
@@ -106,7 +106,7 @@ namespace VDC.Core
                 _TopologicalSort.OrderByDescending(i => i.EndTime).ToList();
         }
 
-        public void DFS_Visit(Vertex vertex)
+        private void DFS_Visit(Vertex vertex)
         {
             Time++;
             vertex.StartTime = Time;
