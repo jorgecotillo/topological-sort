@@ -1,6 +1,7 @@
 using System.IO;
 using NUnit.Framework;
 using VDC.Core;
+using Newtonsoft.Json;
 
 namespace VDC.Tests {
     public class DigraphTests {
@@ -10,7 +11,7 @@ namespace VDC.Tests {
         public void Setup () {
             _graph = new DirectedGraph ();
             _moduleConfigurations = 
-                File.ReadAllText ("C:\\source_code\\azure-virtual-datacenter\\topological-sort\\tests\\samples\\moduleConfigurations.json");
+                File.ReadAllText ("/Users/jorge.cotillo/Documents/azure-virtual-datacenter/topological-sort/tests/samples/moduleConfigurations.json");
             
         }
 
@@ -43,6 +44,8 @@ namespace VDC.Tests {
             _graph.Vertices.ForEach(v => {
                 Assert.IsTrue(v.Color == Color.Black);
             });
+            var x = JsonConvert.SerializeObject(_graph.TopologicalSort);
+            var y = x.Replace("\\", "");
         }
     }
 }

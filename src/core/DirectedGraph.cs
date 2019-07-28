@@ -117,6 +117,14 @@ namespace VDC.Core
                 {
                     DFS_Visit(edge);
                 }
+                else if(edge.Color == Color.Gray)
+                {
+                    throw new Exception($"Cyclic dependency found. Vertex: {vertex.Name} and Edge: {edge.Name}");
+                }
+                else
+                {
+                    continue;
+                }
             }
             vertex.Color = Color.Black;
             Time++;
